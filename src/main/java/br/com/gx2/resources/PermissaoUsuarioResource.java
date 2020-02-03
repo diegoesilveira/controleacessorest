@@ -35,5 +35,11 @@ import br.com.gx2.services.PermissaoUsuarioServices;
 					.path("/{id}").buildAndExpand(obj.getCodigoPermissao()).toUri();
 				return ResponseEntity.created(uri).build();
 		}
+		
+		public ResponseEntity<Void> update(@RequestBody PermissaoUsuario obj, @PathVariable Integer id){
+			obj.setCodigoPermissao(id);
+			obj = permissaoUsuarioService.update(obj);
+			return ResponseEntity.noContent().build();
+		}
 
 }

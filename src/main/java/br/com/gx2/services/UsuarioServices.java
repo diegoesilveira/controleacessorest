@@ -28,6 +28,10 @@ public class UsuarioServices {
 		return usuarioRepository.save(obj);
 	}
 	
+	public Usuario update(Usuario obj) {
+		return usuarioRepository.save(obj);
+	}
+	
 	public List<Usuario> findAll() {
 		return usuarioRepository.findAll();
 	}

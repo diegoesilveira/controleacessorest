@@ -29,6 +29,9 @@ public class PermissaoUsuarioServices {
 		return permissaoUsuarioRepository.save(obj);
 	}
 	
+	public PermissaoUsuario update(PermissaoUsuario obj) {
+		return permissaoUsuarioRepository.save(obj);
+	}
 	
 	public List<PermissaoUsuario> findAll() {
 		return permissaoUsuarioRepository.findAll();
