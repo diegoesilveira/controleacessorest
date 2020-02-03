@@ -8,19 +8,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gx2.domain.PermissaoUsuario;
-import br.com.gx2.domain.Usuario;
 import br.com.gx2.services.PermissaoUsuarioServices;
 
-	@RestController
+@RestController
 	@RequestMapping(value = "/permissaousuario")
 	public class PermissaoUsuarioResource {
 		
 		@Autowired
-		private PermissaoUsuarioServices permissaoUsuarioServices;
+		private PermissaoUsuarioServices permissaoUsuarioService;
 		
 		@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 		public ResponseEntity<PermissaoUsuario> find(@PathVariable Integer id) {
-			Usuario obj = permissaoUsuarioServices.buscarId(id);
+			PermissaoUsuario obj = permissaoUsuarioService.buscarId(id);
 			return ResponseEntity.ok().body(obj);
 		}
 
