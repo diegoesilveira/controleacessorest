@@ -23,7 +23,7 @@ public class PermissaoUsuario implements Serializable {
 	private Integer codigoPermissao;
 	private String permissao;
 
-
+	@JsonIgnore
 	@ManyToMany(mappedBy = "permissaoUsuario")
 	private List<Usuario> usuario = new ArrayList<>();
 

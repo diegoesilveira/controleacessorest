@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.gx2.domain.PermissaoUsuario;
+import br.com.gx2.domain.Usuario;
 import br.com.gx2.repositories.PermissaoUsuarioRepository;
 import br.com.gx2.services.exceptions.ObjectNotFoundException;
 
@@ -19,6 +20,11 @@ public class PermissaoUsuarioServices {
 		Optional <PermissaoUsuario> obj = permissaoUsuarioRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + PermissaoUsuario.class.getName()));
+	}
+	
+	public PermissaoUsuario insert(PermissaoUsuario obj) {
+		obj.setCodigoPermissao(null);
+		return permissaoUsuarioRepository.save(obj);
 	}
 	
 
