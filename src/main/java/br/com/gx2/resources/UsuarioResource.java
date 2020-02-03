@@ -24,7 +24,7 @@ import br.com.gx2.services.UsuarioServices;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Usuario> find(@PathVariable Integer id) {
-		Usuario obj = usuarioService.buscarId(id);
+		Usuario obj = usuarioService.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
@@ -36,6 +36,7 @@ import br.com.gx2.services.UsuarioServices;
 			return ResponseEntity.created(uri).build();
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Usuario obj, @PathVariable Integer id){
 		obj.setCodigoUsuario(id);
 		obj = usuarioService.update(obj);

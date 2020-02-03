@@ -17,7 +17,7 @@ public class UsuarioServices {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	public Usuario buscarId(Integer id) {
+	public Usuario find(Integer id) {
 		Optional <Usuario> obj = usuarioRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Usuario.class.getName()));
@@ -29,6 +29,7 @@ public class UsuarioServices {
 	}
 	
 	public Usuario update(Usuario obj) {
+		find(obj.getCodigoUsuario());
 		return usuarioRepository.save(obj);
 	}
 	

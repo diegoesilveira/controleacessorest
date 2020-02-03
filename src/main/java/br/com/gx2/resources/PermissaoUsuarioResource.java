@@ -36,6 +36,7 @@ import br.com.gx2.services.PermissaoUsuarioServices;
 				return ResponseEntity.created(uri).build();
 		}
 		
+		@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 		public ResponseEntity<Void> update(@RequestBody PermissaoUsuario obj, @PathVariable Integer id){
 			obj.setCodigoPermissao(id);
 			obj = permissaoUsuarioService.update(obj);
