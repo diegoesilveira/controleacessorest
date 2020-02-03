@@ -24,7 +24,7 @@ import br.com.gx2.services.PermissaoUsuarioServices;
 		
 		@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 		public ResponseEntity<PermissaoUsuario> find(@PathVariable Integer id) {
-			PermissaoUsuario obj = permissaoUsuarioService.buscarId(id);
+			PermissaoUsuario obj = permissaoUsuarioService.find(id);
 			return ResponseEntity.ok().body(obj);
 		}
 		

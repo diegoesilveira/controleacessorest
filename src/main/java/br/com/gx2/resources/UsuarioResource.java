@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.gx2.domain.PermissaoUsuario;
 import br.com.gx2.domain.Usuario;
 import br.com.gx2.services.UsuarioServices;
 
@@ -40,6 +39,12 @@ import br.com.gx2.services.UsuarioServices;
 	public ResponseEntity<Void> update(@RequestBody Usuario obj, @PathVariable Integer id){
 		obj.setCodigoUsuario(id);
 		obj = usuarioService.update(obj);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		usuarioService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 

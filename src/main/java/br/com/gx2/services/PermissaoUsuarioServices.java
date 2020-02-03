@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.gx2.domain.PermissaoUsuario;
 import br.com.gx2.domain.Usuario;
 import br.com.gx2.repositories.PermissaoUsuarioRepository;
+import br.com.gx2.services.exceptions.DataIntegrityException;
 import br.com.gx2.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -18,7 +19,7 @@ public class PermissaoUsuarioServices {
 	@Autowired
 	private PermissaoUsuarioRepository permissaoUsuarioRepository;
 	
-	public PermissaoUsuario buscarId(Integer id) {
+	public PermissaoUsuario find(Integer id) {
 		Optional <PermissaoUsuario> obj = permissaoUsuarioRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + PermissaoUsuario.class.getName()));
@@ -32,6 +33,19 @@ public class PermissaoUsuarioServices {
 	public PermissaoUsuario update(PermissaoUsuario obj) {
 		return permissaoUsuarioRepository.save(obj);
 	}
+	
+	public void delete(Integer id) {
+		find(id);
+		try {
+			permissaoUsuarioRepository.deleteById(id);
+		}
+		catch(DataIntegrityException e) {
+			throw new DataIntegrityException("Não foi possível excluir a permissão.");
+		}
+		
+	}
+	
+	
 	
 	public List<PermissaoUsuario> findAll() {
 		return permissaoUsuarioRepository.findAll();
