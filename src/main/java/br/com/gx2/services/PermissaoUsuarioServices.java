@@ -1,9 +1,11 @@
 package br.com.gx2.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import br.com.gx2.domain.PermissaoUsuario;
 import br.com.gx2.domain.Usuario;
@@ -27,5 +29,9 @@ public class PermissaoUsuarioServices {
 		return permissaoUsuarioRepository.save(obj);
 	}
 	
+	
+	public List<PermissaoUsuario> findAll() {
+		return permissaoUsuarioRepository.findAll();
+	}
 
 }

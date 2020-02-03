@@ -25,11 +25,12 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codigoUsuario;
+	
 	private String nomeUsuario;
 	private String usuario;
 	private String email;
 	private String senha;
-	private Integer status;
+	private String status;
 	private String token;
 
 	@JsonIgnore
@@ -44,14 +45,14 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario(Integer codigoUsuario, String nomeUsuario, String usuario, String email, String senha,
-			StatusUsuario status, String token) {
+			String status, String token) {
 
 		this.codigoUsuario = codigoUsuario;
 		this.nomeUsuario = nomeUsuario;
 		this.usuario = usuario;
 		this.email = email;
 		this.senha = senha;
-		this.status = status.getCod();
+		this.status = status;
 		this.token = token;
 	}
 
@@ -111,12 +112,13 @@ public class Usuario implements Serializable {
 		this.permissaoUsuario = permissaoUsuario;
 	}
 
-	public StatusUsuario getStatus() {
-		return StatusUsuario.toEnum(status);
+	
+	public String getStatus() {
+		return status;
 	}
 
-	public void setStatus(StatusUsuario status) {
-		this.status = status.getCod();
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override
