@@ -20,5 +20,10 @@ public class UsuarioServices {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Usuario.class.getName()));
 	}
+	
+	public Usuario insert(Usuario obj) {
+		obj.setCodigoUsuario(null);
+		return usuarioRepo.save(obj);
+	}
 
 }
