@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import br.com.gx2.domain.enums.StatusUsuario;
 
@@ -30,6 +31,7 @@ public class Usuario implements Serializable {
 	private Integer status;
 	private String token;
 
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name = "Usuario_Permissao",
 			joinColumns = @JoinColumn(name  = "codigo_usuario"),
