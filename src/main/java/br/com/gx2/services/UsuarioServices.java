@@ -19,29 +19,29 @@ public class UsuarioServices {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	public Usuario find(Integer id) {
-		Optional <Usuario> obj = usuarioRepository.findById(id);
+	public Usuario find(Integer codigoUsuario) {
+		Optional <Usuario> obj = usuarioRepository.findById(codigoUsuario);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Usuario.class.getName()));
+				"Usuario não encontrado! Id: " + codigoUsuario + ", Tipo: " + Usuario.class.getName()));
 	}
 	
-	public Usuario insert(Usuario obj) {
-		obj.setCodigoUsuario(null);
-		return usuarioRepository.save(obj);
+	public Usuario insert(Usuario codigoUsuario) {
+		codigoUsuario.setCodigoUsuario(null);
+		return usuarioRepository.save(codigoUsuario);
 	}
 	
-	public Usuario update(Usuario obj) {
-		find(obj.getCodigoUsuario());
-		return usuarioRepository.save(obj);
+	public Usuario update(Usuario codigoUsuario) {
+		find(codigoUsuario.getCodigoUsuario());
+		return usuarioRepository.save(codigoUsuario);
 	}
 	
-	public void delete(Integer id) {
-		find(id);
+	public void delete(Integer codigoUsuario) {
+		find(codigoUsuario);
 		try {
-			usuarioRepository.deleteById(id);
+			usuarioRepository.deleteById(codigoUsuario);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir o usuario " +id);
+			throw new DataIntegrityException("Não é possível excluir o usuario " + codigoUsuario);
 		}
 	}
 	
