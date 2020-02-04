@@ -22,25 +22,33 @@ import br.com.gx2.services.PermissaoUsuarioServices;
 		@Autowired
 		private PermissaoUsuarioServices permissaoUsuarioService;
 		
-		@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-		public ResponseEntity<PermissaoUsuario> find(@PathVariable Integer id) {
-			PermissaoUsuario obj = permissaoUsuarioService.find(id);
-			return ResponseEntity.ok().body(obj);
+		@RequestMapping(value = "/{codigoPermissao}", method = RequestMethod.GET)
+		public ResponseEntity<PermissaoUsuario> find(@PathVariable Integer codigoPermissao) {
+			PermissaoUsuario permissaoUsuario = permissaoUsuarioService.find(codigoPermissao);
+			return ResponseEntity.ok().body(permissaoUsuario);
 		}
 		
 		@RequestMapping(method=RequestMethod.POST)
-		public ResponseEntity<Void> insert(@RequestBody PermissaoUsuario obj){
-			obj = permissaoUsuarioService.insert(obj);
+		public ResponseEntity<Void> insert(@RequestBody PermissaoUsuario permissaoUsuario){
+			permissaoUsuario = permissaoUsuarioService.insert(permissaoUsuario);
 			URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-					.path("/{id}").buildAndExpand(obj.getCodigoPermissao()).toUri();
+					.path("/{codigoPermissao}").buildAndExpand(permissaoUsuario.getCodigoPermissao()).toUri();
 				return ResponseEntity.created(uri).build();
 		}
 		
-		@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-		public ResponseEntity<Void> update(@RequestBody PermissaoUsuario obj, @PathVariable Integer id){
-			obj.setCodigoPermissao(id);
-			obj = permissaoUsuarioService.update(obj);
+		@RequestMapping(value = "/{codigoPermissao}", method = RequestMethod.PUT)
+		public ResponseEntity<Void> update(@RequestBody PermissaoUsuario permissaoUsuario, @PathVariable Integer codigoPermissao){
+			permissaoUsuario.setCodigoPermissao(codigoPermissao);
+			permissaoUsuario = permissaoUsuarioService.update(permissaoUsuario);
 			return ResponseEntity.noContent().build();
 		}
+		
+		@RequestMapping(value="/{codigoPermissao}", method=RequestMethod.DELETE)
+		public ResponseEntity<Void> delete(@PathVariable Integer codigoPermissao) {
+			permissaoUsuarioService.delete(codigoPermissao);
+			return ResponseEntity.noContent().build();
+		}
+		
+		
 
 }
