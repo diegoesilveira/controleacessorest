@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,11 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import br.com.gx2.domain.enums.StatusUsuario;
 
 @Entity
 public class Usuario implements Serializable {
@@ -26,11 +25,23 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codigoUsuario;
 	
+	
+	@NotEmpty(message = "Campo nome usuario não pode ser nulo.")
 	private String nomeUsuario;
+	
+	@NotEmpty(message = "Campo usuario não pode ser nulo.")
 	private String usuario;
+	
+	@NotEmpty(message = "Campo email não pode ser nulo.")
 	private String email;
+	
+	@NotEmpty(message = "Campo senha não pode ser nulo.")
 	private String senha;
+	
+	@NotEmpty(message = "Campo status não pode ser nulo.")
 	private String status;
+	
+	@NotEmpty(message = "Campo token não pode ser nulo.")
 	private String token;
 
 	@JsonIgnore

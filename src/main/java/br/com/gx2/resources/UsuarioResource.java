@@ -3,6 +3,8 @@ package br.com.gx2.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +31,7 @@ public class UsuarioResource {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Usuario usuario) {
+	public ResponseEntity<Void> insert(@RequestBody @Valid Usuario usuario) {
 		usuario = usuarioService.insert(usuario);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{codigoUsuario}")
 				.buildAndExpand(usuario.getCodigoUsuario()).toUri();
@@ -37,7 +39,7 @@ public class UsuarioResource {
 	}
 
 	@RequestMapping(value = "/{codigoUsuario}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Usuario usuario, @PathVariable Integer codigoUsuario) {
+	public ResponseEntity<Void> update(@RequestBody @Valid Usuario usuario, @PathVariable Integer codigoUsuario) {
 		usuario.setCodigoUsuario(codigoUsuario);
 		usuario = usuarioService.update(usuario);
 		return ResponseEntity.noContent().build();

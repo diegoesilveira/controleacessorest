@@ -2,6 +2,8 @@ package br.com.gx2.resources;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +30,7 @@ import br.com.gx2.services.PermissaoUsuarioServices;
 		}
 		
 		@RequestMapping(method=RequestMethod.POST)
-		public ResponseEntity<Void> insert(@RequestBody PermissaoUsuario permissaoUsuario){
+		public ResponseEntity<Void> insert(@RequestBody @Valid PermissaoUsuario permissaoUsuario){
 			permissaoUsuario = permissaoUsuarioService.insert(permissaoUsuario);
 			URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 					.path("/{codigoPermissao}").buildAndExpand(permissaoUsuario.getCodigoPermissao()).toUri();
@@ -36,7 +38,7 @@ import br.com.gx2.services.PermissaoUsuarioServices;
 		}
 		
 		@RequestMapping(value = "/{codigoPermissao}", method = RequestMethod.PUT)
-		public ResponseEntity<Void> update(@RequestBody PermissaoUsuario permissaoUsuario, @PathVariable Integer codigoPermissao){
+		public ResponseEntity<Void> update(@RequestBody @Valid PermissaoUsuario permissaoUsuario, @PathVariable Integer codigoPermissao){
 			permissaoUsuario.setCodigoPermissao(codigoPermissao);
 			permissaoUsuario = permissaoUsuarioService.update(permissaoUsuario);
 			return ResponseEntity.noContent().build();

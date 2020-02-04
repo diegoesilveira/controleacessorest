@@ -9,9 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class PermissaoUsuario implements Serializable {
@@ -21,6 +21,8 @@ public class PermissaoUsuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codigoPermissao;
+	
+	@NotEmpty(message = "Campo permissão não pode ser nulo.")
 	private String permissao;
 
 	@JsonIgnore
