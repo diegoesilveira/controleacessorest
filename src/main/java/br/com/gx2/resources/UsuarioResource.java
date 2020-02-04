@@ -51,7 +51,7 @@ public class UsuarioResource {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> findAll() {
-		List<Usuario> list = usuarioService.findAll();
-		return ResponseEntity.ok().body(list);
+		List<Usuario> listUsuario = usuarioService.findAll();
+		return ResponseEntity.ok().body(listUsuario);
 	}
 }
