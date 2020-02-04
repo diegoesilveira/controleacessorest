@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import br.com.gx2.domain.PermissaoUsuario;
 import br.com.gx2.domain.Usuario;
 import br.com.gx2.repositories.UsuarioRepository;
 import br.com.gx2.services.exceptions.DataIntegrityException;

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.gx2.domain.PermissaoUsuario;
-import br.com.gx2.domain.Usuario;
 import br.com.gx2.services.PermissaoUsuarioServices;
 
 @RestController
